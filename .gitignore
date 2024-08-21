@@ -33,3 +33,5 @@ build/
 .vscode/
 
 .metadata
+
+zipkin-server-3.4.1-exec.jar
