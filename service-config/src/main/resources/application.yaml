@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          default-label: config-server
+          uri: https://github.com/Daniel-LA0303/mcsv_app7_shop
+          search-paths: config-data
+  application:
+    name: service-config
