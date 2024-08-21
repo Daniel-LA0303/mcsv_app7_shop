@@ -85,15 +85,21 @@
 		    <version>6.0.23</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.cloud</groupId>
-		    <artifactId>spring-cloud-starter-sleuth</artifactId>
-		    <version>3.1.11</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.cloud</groupId>
-		    <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-		    <version>3.1.11</version>
-		</dependency>
+	        <groupId>io.micrometer</groupId>
+	        <artifactId>micrometer-tracing-bridge-brave</artifactId>
+	    </dependency>
+	    
+	    <!-- Zipkin reporter para Brave, que permite enviar las trazas a Zipkin -->
+	    <dependency>
+	        <groupId>io.zipkin.reporter2</groupId>
+	        <artifactId>zipkin-reporter-brave</artifactId>
+	    </dependency>
+	    
+	    <!-- Actuator para endpoints de monitoreo -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-actuator</artifactId>
+	    </dependency>
 	</dependencies>
 	  <dependencyManagement>
 	    <dependencies>
