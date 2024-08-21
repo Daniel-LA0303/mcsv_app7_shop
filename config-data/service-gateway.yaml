@@ -13,6 +13,8 @@ eureka:
 spring:
   cloud:
     gateway:
+      default-filters:
+        - TokenRelay
       discovery:
         locator:
           enabled: true
@@ -21,6 +23,8 @@ spring:
           uri: lb://service-user
           predicates:
             - Path=/user/**
+          filters:
+            - RemoveRequestHeader=Cookie
         - id: service-car
           uri: lb://service-car
           predicates:
@@ -29,8 +33,25 @@ spring:
           uri: lb://service-bike
           predicates:
             - Path=/bike/**
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            authorization-uri: http://localhost:8180/auth/realms/mcsv-app-shop/protocol/openid-connect/auth
+            userinfo-uri: http://localhost:8180/auth/realms/mcsv-app-shop/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+            token-uri: http://localhost:8180/auth/realms/mcsv-app-shop/protocol/openid-connect/token
+        registration:
+          spring-mcsv-new:
+            provider: keycloak
+            client-id: spring-mcsv-new
+            client-secret: l1wjyO9kwzMalJjCgsKVN7C1cl92iAWM
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/spring-mcsv-new"
   zipkin:
     base-url: http://localhost:9411
   sleuth:
     sampler:
       probability: 1.0
+    
