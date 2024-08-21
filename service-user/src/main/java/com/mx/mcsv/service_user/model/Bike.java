@@ -12,6 +12,8 @@ public class Bike {
     private String brand;
     
     private String model;   
+    
+    private int userId;
 
 	public Bike() {
 	}
@@ -19,6 +21,12 @@ public class Bike {
 	public Bike(String brand, String model) {
 		this.brand = brand;
 		this.model = model;
+	}
+	
+	public Bike(String brand, String model, int userId) {
+		this.brand = brand;
+		this.model = model;
+		this.userId = userId;
 	}
 
 	public String getBrand() {
@@ -36,6 +44,13 @@ public class Bike {
 	public void setModel(String model) {
 		this.model = model;
 	}
-    
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
     
 }

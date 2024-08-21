@@ -13,12 +13,20 @@ public class Car {
     
     private String model;
     
+    private int userId;
+    
 	public Car() {
 	}
 
 	public Car(String brand, String model) {
 		this.brand = brand;
 		this.model = model;
+	}
+
+	public Car(String brand, String model, int userId) {
+		this.brand = brand;
+		this.model = model;
+		this.userId = userId;
 	}
 
 	public String getBrand() {
@@ -35,6 +43,14 @@ public class Car {
 
 	public void setModel(String model) {
 		this.model = model;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 }
