@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mx.mcsv.service_user.entity.User;
+import com.mx.mcsv.service_user.model.Bike;
+import com.mx.mcsv.service_user.model.Car;
 import com.mx.mcsv.service_user.service.UserService;
 
 @RestController
@@ -41,6 +43,24 @@ public class UserController {
     public ResponseEntity<User> save(@RequestBody User user) {
         User userNew = userService.save(user);
         return ResponseEntity.ok(userNew);
+    }
+    
+    @GetMapping("/cars/{userId}")
+    public ResponseEntity<List<Car>> getCars(@PathVariable("userId") int userId) {
+        User user = userService.getUserById(userId);
+        if(user == null)
+            return ResponseEntity.notFound().build();
+        List<Car> cars = userService.getCars(userId);
+        return ResponseEntity.ok(cars);
+    }
+
+    @GetMapping("/bikes/{userId}")
+    public ResponseEntity<List<Bike>> getBikes(@PathVariable("userId") int userId) {
+        User user = userService.getUserById(userId);
+        if(user == null)
+            return ResponseEntity.notFound().build();
+        List<Bike> bikes = userService.getBikes(userId);
+        return ResponseEntity.ok(bikes);
     }
 
 }
