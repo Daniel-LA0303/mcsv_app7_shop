@@ -48,7 +48,7 @@ spring:
             client-id: spring-mcsv-new
             client-secret: l1wjyO9kwzMalJjCgsKVN7C1cl92iAWM
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/spring-mcsv-new"
+            redirect-uri: http://localhost:8080/login/oauth2/code/spring-mcsv-new
   zipkin:
     base-url: http://localhost:9411
   sleuth:
