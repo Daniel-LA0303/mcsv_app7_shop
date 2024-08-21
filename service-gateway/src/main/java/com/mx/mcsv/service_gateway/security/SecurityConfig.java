@@ -24,15 +24,5 @@ public class SecurityConfig {
         return http.build();
     }
     
-    /*@Bean
-    public ReactiveClientRegistrationRepository clientRegistrationRepository() {
-        ClientRegistration registration = ClientRegistrations
-                .fromIssuerLocation("http://localhost:8180/auth/realms/mcsv-app-shop")
-                .clientId("spring-mcsv-new")
-                .clientSecret("l1wjyO9kwzMalJjCgsKVN7C1cl92iAWM")
-                .build();
-
-        return new InMemoryReactiveClientRegistrationRepository(registration);
-    }*/
 }
 
