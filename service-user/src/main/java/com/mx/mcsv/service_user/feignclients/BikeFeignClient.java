@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mx.mcsv.service_user.model.Bike;
 
-@FeignClient(name = "service-bike", url = "http://localhost:8003/bike")
+@FeignClient(name = "service-bike")
 //@RequestMapping("/bike")
 public interface BikeFeignClient {
 
-    @PostMapping()
+    @PostMapping("/bike")
     Bike save(@RequestBody Bike bike);
 
-    @GetMapping("/byuser/{userId}")
+    @GetMapping("/bike/byuser/{userId}")
     List<Bike> getBikes(@PathVariable("userId") int userId);
 }
