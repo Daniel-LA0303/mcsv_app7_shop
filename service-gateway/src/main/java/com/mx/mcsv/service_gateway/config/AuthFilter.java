@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
 
+import com.mx.mcsv.service_gateway.dto.RequestDto;
 import com.mx.mcsv.service_gateway.dto.TokenDto;
 
 import reactor.core.publisher.Mono;
@@ -35,6 +36,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             return webClient.build()
                     .post()
                     .uri("http://service-auth/auth/validate?token=" + chunks[1])
+                    .bodyValue(new RequestDto(exchange.getRequest().getPath().toString(), exchange.getRequest().getMethod().toString()))
                     .retrieve().bodyToMono(TokenDto.class)
                     .map(t -> {
                         t.getToken();

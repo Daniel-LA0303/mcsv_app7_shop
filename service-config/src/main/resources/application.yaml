@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          default-label: auth-jwt
+          default-label: auth-jwt-role
           uri: https://github.com/Daniel-LA0303/mcsv_app7_shop
           search-paths: config-data
   application:
