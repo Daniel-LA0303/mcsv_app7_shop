@@ -5,5 +5,15 @@ spring:
     config:
       enabled: true
       uri: http://localhost:8081
+      
 jwt:
   secret: secret
+  
+admin-paths:
+    paths:
+      - uri: "/user"
+        method: "POST"
+      - uri: "/user/savecar/{1}[1-9]+[0-9]*" # Regular expression to match the path
+        method: "POST"
+      - uri: "/user/savebike/{1}[1-9]+[0-9]*"
+        method: "POST"

@@ -83,10 +83,11 @@ public class AuthUser {
 	}
 
 	// Clase Builder como método estático
-    public static class AuthUserBuilder {
+	public static class AuthUserBuilder {
         private int id;
         private String userName;
         private String password;
+        private String role;
 
         // Constructor vacío
         public AuthUserBuilder() {
@@ -108,9 +109,14 @@ public class AuthUser {
             return this;
         }
 
+        public AuthUserBuilder role(String role) {
+            this.role = role;
+            return this;
+        }
+
         // Método para construir la instancia de AuthUser
         public AuthUser build() {
-            return new AuthUser(id, userName, password);
+            return new AuthUser(id, userName, password, role);
         }
     }
     

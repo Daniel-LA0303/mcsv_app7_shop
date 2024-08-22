@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mx.mcsv.service_auth.dto.AuthUserDto;
+import com.mx.mcsv.service_auth.dto.NewUserDto;
 import com.mx.mcsv.service_auth.dto.RequestDto;
 import com.mx.mcsv.service_auth.dto.TokenDto;
 import com.mx.mcsv.service_auth.entity.AuthUser;
@@ -38,7 +39,7 @@ public class AuthUserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AuthUser> create(@RequestBody AuthUserDto dto){
+    public ResponseEntity<AuthUser> create(@RequestBody NewUserDto dto){
         AuthUser authUser = authUserService.save(dto);
         if(authUser == null)
             return ResponseEntity.badRequest().build();

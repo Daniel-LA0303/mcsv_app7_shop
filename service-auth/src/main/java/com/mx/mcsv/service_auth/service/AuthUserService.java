@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mx.mcsv.service_auth.dto.AuthUserDto;
+import com.mx.mcsv.service_auth.dto.NewUserDto;
 import com.mx.mcsv.service_auth.dto.RequestDto;
 import com.mx.mcsv.service_auth.dto.TokenDto;
 import com.mx.mcsv.service_auth.entity.AuthUser;
@@ -25,7 +26,7 @@ public class AuthUserService {
     @Autowired
     JwtProvider jwtProvider;
 
-    public AuthUser save(AuthUserDto dto) {
+    public AuthUser save(NewUserDto dto) {
         Optional<AuthUser> user = authUserRepository.findByUserName(dto.getUserName());
         if(user.isPresent())
             return null;
@@ -33,6 +34,7 @@ public class AuthUserService {
         AuthUser authUser = AuthUser.builder()
                 .userName(dto.getUserName())
                 .password(password)
+                .role(dto.getRole())
                 .build();
         return authUserRepository.save(authUser);
     }
