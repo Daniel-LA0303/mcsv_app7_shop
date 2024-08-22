@@ -49,23 +49,49 @@ public class UserService {
         return userNew;
     }
     
-    public List<Car> getCars(int userId) {
+    public List getCars(int userId) {
     	
     	//http://service-car/car/byuser/
-    	Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + jwt.getTokenValue());
-        ResponseEntity<List> cars = restTemplate.exchange("http://car-service/car/byuser/" + userId, HttpMethod.GET, new HttpEntity<>(httpHeaders), List.class);
-        return cars.getBody();
+    	try {
+            Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("Authorization", "Bearer " + jwt.getTokenValue());
+            System.out.println("servicio");
+            ResponseEntity<List> cars = restTemplate.exchange(
+                "http://service-car/car/byuser/" + userId,
+                HttpMethod.GET,
+                new HttpEntity<>(httpHeaders),
+                List.class
+            );
+            System.out.println("exito");
+            return cars.getBody();
+        } catch (Exception e) {
+            // Loguear el error
+            System.err.println("Error en getCars: " + e.getMessage());
+            throw e; // Relanzar la excepción para que el CircuitBreaker la capture
+        }
     }
 
-    public List<Bike> getBikes(int userId) {
+    public List getBikes(int userId) {
     	//http://service-bike/bike/byuser/
-        Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + jwt.getTokenValue());
-        ResponseEntity<List> bikes = restTemplate.exchange("http://bike-service/bike/byuser/" + userId, HttpMethod.GET, new HttpEntity<>(httpHeaders), List.class);
-        return bikes.getBody();
+    	try {
+            Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("Authorization", "Bearer " + jwt.getTokenValue());
+            
+            ResponseEntity<List> bikes = restTemplate.exchange(
+                "http://service-bike/bike/byuser/" + userId,
+                HttpMethod.GET,
+                new HttpEntity<>(httpHeaders),
+                List.class
+            );
+            
+            return bikes.getBody();
+        } catch (Exception e) {
+            // Loguear el error
+            System.err.println("Error en getBikes: " + e.getMessage());
+            throw e; // Relanzar la excepción para que el CircuitBreaker la capture
+        }
     }
     
     public Car saveCar(int userId, Car car) {
