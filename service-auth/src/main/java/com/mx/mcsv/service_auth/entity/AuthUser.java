@@ -26,6 +26,8 @@ public class AuthUser {
     
     private String password;
     
+    private String role;
+    
 	public AuthUser() {
 	}
 
@@ -33,6 +35,14 @@ public class AuthUser {
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
+	}
+	
+
+	public AuthUser(int id, String userName, String password, String role) {
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.role = role;
 	}
 
 	public int getId() {
@@ -59,11 +69,20 @@ public class AuthUser {
 		this.password = password;
 	}
 	
+    public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	
 	public static AuthUserBuilder builder() {
         return new AuthUserBuilder();
-    }
+	}
 
-    // Clase Builder como método estático
+	// Clase Builder como método estático
     public static class AuthUserBuilder {
         private int id;
         private String userName;
